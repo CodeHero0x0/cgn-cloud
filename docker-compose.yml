@@ -1,0 +1,47 @@
+version: '3.8'
+services:
+  cgn-admin:
+    image: cgn-admin:latest
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+    container_name: cgn-admin
+    ports:
+      - "1080:1080"
+    networks:
+      - cgn-net
+
+
+  # 网关服务
+  cgn-cloud-gateway:
+    image: cgn-cloud-gateway:latest
+    restart: always
+    volumes:
+      - /apps/cgn/cgn-cloud/logs:/logs
+    environment:
+      - TZ=Asia/Shanghai
+    container_name: cgn-cloud-gateway
+    ports:
+      - "18080:18080"
+    networks:
+      - cgn-net
+
+
+
+  # 系统服务
+  cgn-cloud-system:
+    image: cgn-cloud-system:latest
+    restart: always
+    volumes:
+      - /apps/cgn/cgn-cloud/logs:/logs
+    environment:
+      - TZ=Asia/Shanghai
+    container_name: cgn-cloud-system
+    ports:
+      - "18081:18081"
+    networks:
+      - cgn-net
+# 定义一个网络，让所有服务都在这个网络内，可以通过服务名互相访问
+networks:
+  cgn-net:
+    driver: bridge

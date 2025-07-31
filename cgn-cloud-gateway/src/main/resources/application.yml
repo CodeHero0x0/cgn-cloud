@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: cgn-cloud-gateway
+  cloud:
+    nacos:
+      username: @nacos.username@
+      password: @nacos.password@
+      discovery:
+        server-addr: @nacos.server-addr@
+        namespace: @nacos.namespace@
+        username: ${spring.cloud.nacos.username}
+        password: ${spring.cloud.nacos.password}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        file-extension: yaml
+        refresh-enabled: true
+#        shared-configs:
+#          - data-id: ${spring.application.name}-@profile.name@.yaml
+#            refresh: true
+#        username: ${spring.cloud.nacos.username}
+#        password: ${spring.cloud.nacos.password}
+  profiles:
+    active: @profile.name@
+  config:
+    import:
+      - nacos:${spring.application.name}-@profile.name@.yaml
