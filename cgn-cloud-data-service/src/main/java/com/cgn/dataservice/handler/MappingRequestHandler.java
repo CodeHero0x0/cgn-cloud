@@ -123,6 +123,7 @@ public class MappingRequestHandler {
                 apiConfigDao.increaseRequestedTimes(apiConfigEntity.getId());
             }
             apiLogEntity.setDuration(System.currentTimeMillis() - now);
+            apiLogEntity.setProjectId(1000L);
             //添加日志
             apiLogService.save(apiLogEntity);
             if (apiConfigEntity != null) {
