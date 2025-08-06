@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: cgn-cloud-data-service
+  cloud:
+    nacos:
+      username: @nacos.username@
+      password: @nacos.password@
+      discovery:
+        server-addr: @nacos.server-addr@
+        namespace: @nacos.namespace@
+        username: ${spring.cloud.nacos.username}
+        password: ${spring.cloud.nacos.password}
+      config:
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        namespace: ${spring.cloud.nacos.discovery.namespace}
+        file-extension: yaml
+        refresh-enabled: true
+  profiles:
+    active: @profile.name@
+  config:
+    import:
+      - nacos:${spring.application.name}-@profile.name@.yaml
+      - nacos:datasource-@profile.name@.yaml
+      - nacos:common-@profile.name@.yaml

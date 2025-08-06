@@ -20,6 +20,7 @@
         <module>cgn-cloud-module</module>
         <module>cgn-cloud-system</module>
         <module>cgn-cloud-gateway</module>
+        <module>cgn-cloud-data-service</module>
     </modules>
 
     <properties>
@@ -58,6 +59,9 @@
         <tencentcloud.sdk.ses.version>3.1.944</tencentcloud.sdk.ses.version>
         <mail.version>1.6.2</mail.version>
         <spring-integration-mqtt.version>5.5.6</spring-integration-mqtt.version>
+        <druid-starter-version>1.2.8</druid-starter-version>
+        <guava.version>31.1-jre</guava.version>
+
     </properties>
 
     <dependencies>
@@ -254,6 +258,16 @@
                 <groupId>org.springframework.integration</groupId>
                 <artifactId>spring-integration-mqtt</artifactId>
                 <version>${spring-integration-mqtt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

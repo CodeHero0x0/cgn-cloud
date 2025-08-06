@@ -1,4 +1,4 @@
-package com.cgn.config;
+package com.cgn.gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
