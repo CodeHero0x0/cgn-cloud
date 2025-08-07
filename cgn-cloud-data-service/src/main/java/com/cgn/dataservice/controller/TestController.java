@@ -22,8 +22,8 @@ public class TestController {
         apiConfig.setName("test");
         apiConfig.setPath("test");
         apiConfig.setType("sql");
-        apiConfig.setSqlText("select * from sys_dict_data");
-        apiConfig.setSqlParam("{}");
+        apiConfig.setSqlText("select * from data_service_api_log where id = #{id}");
+        apiConfig.setSqlParam("{\r\n    \"id\": 1\r\n}");
         apiConfig.setSqlSeparator(";\\n");
         apiConfig.setSqlMaxRow(1000);
         apiConfig.setType("GET");

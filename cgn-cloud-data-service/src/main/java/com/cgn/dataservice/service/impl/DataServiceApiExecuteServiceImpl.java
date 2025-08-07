@@ -42,7 +42,7 @@ public class DataServiceApiExecuteServiceImpl extends BaseServiceImpl<DataServic
         });
         ProductTypeEnum productTypeEnum = ProductTypeEnum.getByIndex(ProductTypeEnum.MYSQL.getIndex());
         IMetaDataByJdbcService metaDataService = new MetaDataByJdbcServiceImpl(productTypeEnum);
-        return metaDataService.queryDataBySql(jdbcUrl, "MYSQL", userName, password, sqlDto.getStatement(), sqlDto.getOpenTrans(), sqlDto.getSqlMaxRow());
+        return metaDataService.queryDataByApiSql(jdbcUrl, userName, password, sqlDto.getStatement(), sqlDto.getOpenTrans(), sqlDto.getSqlSeparator(), sqlParam, sqlDto.getSqlMaxRow());
     }
 
 //    @Override

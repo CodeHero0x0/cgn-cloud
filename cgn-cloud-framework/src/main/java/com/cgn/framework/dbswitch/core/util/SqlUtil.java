@@ -31,7 +31,7 @@ public class SqlUtil {
     private static final String SEMICOLON = ";";
 
     public static String[] getStatements(String sql, String sqlSeparator) {
-        if (StrUtil.isNotBlank(sql)) {
+        if (StrUtil.isBlank(sql)) {
             return new String[0];
         }
 
