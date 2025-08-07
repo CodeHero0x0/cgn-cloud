@@ -1,6 +1,7 @@
 package com.cgn.dataservice.convert;
 
 import com.cgn.dataservice.entity.DataServiceApiGroupEntity;
+import com.cgn.dataservice.vo.DataServiceApiGroupVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -17,5 +18,9 @@ import java.util.List;
 public interface DataServiceApiGroupConvert {
     DataServiceApiGroupConvert INSTANCE = Mappers.getMapper(DataServiceApiGroupConvert.class);
 
+    DataServiceApiGroupEntity convert(DataServiceApiGroupVO vo);
 
+    DataServiceApiGroupVO convert(DataServiceApiGroupEntity entity);
+
+    List<DataServiceApiGroupVO> convertList(List<DataServiceApiGroupEntity> list);
 }

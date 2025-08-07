@@ -47,6 +47,16 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
     }
 
     /**
+     * 租户id
+     *
+     * @return {@link Long }
+     */
+    protected Long getProjectId() {
+        return 1L;
+    }
+
+
+    /**
      * MyBatis-Plus 数据权限
      */
     protected void dataScopeWrapper(LambdaQueryWrapper<T> queryWrapper) {
