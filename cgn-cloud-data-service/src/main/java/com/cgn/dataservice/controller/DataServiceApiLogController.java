@@ -5,6 +5,8 @@ import com.cgn.dataservice.service.DataServiceApiLogService;
 import com.cgn.dataservice.vo.DataServiceApiLogVO;
 import com.cgn.framework.common.utils.PageResult;
 import com.cgn.framework.common.utils.Result;
+import com.cgn.framework.operatelog.annotations.OperateLog;
+import com.cgn.framework.operatelog.enums.OperateTypeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
@@ -41,6 +43,7 @@ public class DataServiceApiLogController {
 
     @DeleteMapping
     @Operation(summary = "删除")
+    @OperateLog(type = OperateTypeEnum.DELETE)
     @PreAuthorize("hasAuthority('data-service:log:delete')")
     public Result<String> delete(@RequestBody List<Long> idList) {
         dataServiceApiLogService.delete(idList);

@@ -9,6 +9,8 @@ import com.cgn.dataservice.vo.DataServiceApiConfigVO;
 import com.cgn.framework.common.utils.PageResult;
 import com.cgn.framework.common.utils.Result;
 import com.cgn.framework.dbswitch.core.model.JdbcSelectResult;
+import com.cgn.framework.operatelog.annotations.OperateLog;
+import com.cgn.framework.operatelog.enums.OperateTypeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
@@ -54,6 +56,7 @@ public class DataServiceApiConfigController {
 
     @PostMapping
     @Operation(summary = "保存")
+    @OperateLog(type = OperateTypeEnum.INSERT)
     @PreAuthorize("hasAuthority('data-service:api-config:save')")
     public Result<String> save(@RequestBody DataServiceApiConfigVO vo) {
         dataServiceApiConfigService.save(vo);
@@ -63,6 +66,7 @@ public class DataServiceApiConfigController {
 
     @PutMapping
     @Operation(summary = "修改")
+    @OperateLog(type = OperateTypeEnum.UPDATE)
     @PreAuthorize("hasAuthority('data-service:api-config:update')")
     public Result<String> update(@RequestBody @Valid DataServiceApiConfigVO vo) {
         dataServiceApiConfigService.update(vo);
@@ -72,6 +76,7 @@ public class DataServiceApiConfigController {
 
     @DeleteMapping
     @Operation(summary = "删除")
+    @OperateLog(type = OperateTypeEnum.DELETE)
     @PreAuthorize("hasAuthority('data-service:api-config:delete')")
     public Result<String> delete(@RequestBody List<Long> idList) {
         dataServiceApiConfigService.delete(idList);

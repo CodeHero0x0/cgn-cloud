@@ -7,6 +7,8 @@ import com.cgn.dataservice.service.DataServiceApiGroupService;
 import com.cgn.dataservice.vo.DataServiceApiGroupVO;
 import com.cgn.framework.common.utils.Result;
 import com.cgn.framework.common.utils.TreeNodeVo;
+import com.cgn.framework.operatelog.annotations.OperateLog;
+import com.cgn.framework.operatelog.enums.OperateTypeEnum;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -50,6 +52,7 @@ public class DataServiceApiGroupController {
 
     @PostMapping
     @Operation(summary = "保存")
+    @OperateLog(type = OperateTypeEnum.INSERT)
     @PreAuthorize("hasAuthority('data-service:api-group:save')")
     public Result<String> save(@RequestBody DataServiceApiGroupVO vo){
         dataServiceApiGroupService.save(vo);
@@ -59,6 +62,7 @@ public class DataServiceApiGroupController {
 
     @PutMapping
     @Operation(summary = "修改")
+    @OperateLog(type = OperateTypeEnum.UPDATE)
     @PreAuthorize("hasAuthority('data-service:api-group:update')")
     public Result<String> update(@RequestBody @Valid DataServiceApiGroupVO vo){
         dataServiceApiGroupService.update(vo);
@@ -68,6 +72,7 @@ public class DataServiceApiGroupController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "删除")
+    @OperateLog(type = OperateTypeEnum.DELETE)
     @PreAuthorize("hasAuthority('data-service:api-group:delete')")
     public Result<String> delete(@PathVariable Long id){
         dataServiceApiGroupService.delete(id);
