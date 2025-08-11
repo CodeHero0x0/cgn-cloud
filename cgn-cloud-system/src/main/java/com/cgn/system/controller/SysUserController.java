@@ -205,4 +205,10 @@ public class SysUserController {
     public void export() {
         sysUserService.export();
     }
+    @GetMapping("list-all")
+    @Operation(summary = "获取用户信息列表-映射创建人字段")
+    public Result<List<SysUserVO>> listAll() {
+        List<SysUserVO> list = sysUserService.listAll();
+        return Result.ok(list);
+    }
 }

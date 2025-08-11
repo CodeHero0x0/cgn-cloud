@@ -148,12 +148,6 @@ public class DataServiceApiConfigServiceImpl extends BaseServiceImpl<DataService
     @Transactional(rollbackFor = Exception.class)
     public void delete(List<Long> idList) {
         removeByIds(idList);
-        //同步删除授权信息
-        for (Long apiId : idList) {
-            LambdaQueryWrapper<DataServiceApiAuthEntity> wrapper = new LambdaQueryWrapper<>();
-            wrapper.eq(DataServiceApiAuthEntity::getApiId, apiId);
-            apiAuthDao.delete(wrapper);
-        }
     }
 
     @Override

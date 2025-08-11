@@ -91,5 +91,10 @@ public class SysOrgController {
 
         return Result.ok(list);
     }
+    @GetMapping("/list-all")
+    @Operation(summary = "获取全部列表")
+    public Result<List<SysOrgVO>> listAll() {
+        return Result.ok(SysOrgConvert.INSTANCE.convertList(sysOrgService.list()));
+    }
 
 }

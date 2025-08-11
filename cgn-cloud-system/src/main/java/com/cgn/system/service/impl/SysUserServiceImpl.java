@@ -1,5 +1,6 @@
 package com.cgn.system.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.fhs.trans.service.impl.TransService;
@@ -247,5 +248,12 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUserDao, SysUserEntit
         // 写到浏览器打开
         ExcelUtils.excelExport(SysUserExcelVO.class, "用户管理", null, userExcelVOS);
     }
-
+    @Override
+    public List<SysUserVO> listAll() {
+        List<SysUserVO> voList = SysUserConvert.INSTANCE.convertList(baseMapper.selectList(new LambdaQueryWrapper<>()));
+        voList.forEach(sysUserVO -> {
+            sysUserVO.setPassword(null);
+        });
+        return voList;
+    }
 }

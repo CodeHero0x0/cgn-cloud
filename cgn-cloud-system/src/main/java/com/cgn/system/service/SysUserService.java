@@ -67,4 +67,5 @@ public interface SysUserService extends BaseService<SysUserEntity> {
      * 导出用户信息表格
      */
     void export();
+    List<SysUserVO> listAll();
 }

@@ -146,4 +146,5 @@ public class DataServiceApiConfigController {
         dataServiceApiConfigService.resetRequested(authId);
         return Result.ok();
     }
+
 }
