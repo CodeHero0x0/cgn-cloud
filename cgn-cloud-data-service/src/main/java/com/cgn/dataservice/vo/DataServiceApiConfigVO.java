@@ -71,12 +71,6 @@ public class DataServiceApiConfigVO implements Serializable {
     @Schema(description = "发布者id")
     private Long releaseUserId;
 
-    @Schema(description = "1-数据库 2-中台库")
-    private Integer sqlDbType;
-
-    @Schema(description = "数据库id")
-    private Long databaseId;
-
     @Schema(description = "是否私有 0-否 1-是")
     private Integer previlege;
 

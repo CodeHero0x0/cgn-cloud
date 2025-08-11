@@ -77,15 +77,6 @@ public class DataServiceApiConfigEntity extends BaseEntity {
     @TableField(updateStrategy = FieldStrategy.ALWAYS)
     private Long releaseUserId;
 
-    /**
-     * 1-数据库 2-中台库
-     */
-    private Integer sqlDbType;
-
-    /**
-     * 数据库id
-     */
-    private Long databaseId;
 
     /**
      * 是否私有 0-否 1-是
@@ -96,12 +87,6 @@ public class DataServiceApiConfigEntity extends BaseEntity {
      * 是否开启事务 0-否 1-是
      */
     private Integer openTrans;
-
-    /**
-     * 数据主题
-     */
-    private String dataSubject;
-
 
     /**
      * 项目id

@@ -89,11 +89,10 @@ public class MappingRequestHandler {
                 throw new ServerException(String.format("不支持的请求类型，请使用 【%s】方式请求", apiConfigEntity.getType()));
             }
 
-            JdbcSelectResult jdbcSelectResult = apiExecuteService.sqlExecute(SqlDto.builder().databaseId(apiConfigEntity.getDatabaseId())
+            JdbcSelectResult jdbcSelectResult = apiExecuteService.sqlExecute(SqlDto.builder()
                     .jsonParams(JsonUtils.toJsonString(params))
                     .openTrans(apiConfigEntity.getOpenTrans())
                     .projectId(apiConfigEntity.getProjectId())
-                    .sqlDbType(apiConfigEntity.getSqlDbType())
                     .sqlSeparator(apiConfigEntity.getSqlSeparator())
                     .sqlMaxRow(apiConfigEntity.getSqlMaxRow())
                     .statement(apiConfigEntity.getSqlText())

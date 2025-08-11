@@ -10,6 +10,7 @@ spring:
         namespace: @nacos.namespace@
         username: ${spring.cloud.nacos.username}
         password: ${spring.cloud.nacos.password}
+#        register-enabled: false
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         namespace: ${spring.cloud.nacos.discovery.namespace}

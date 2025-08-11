@@ -17,7 +17,6 @@ public class ApiTest {
     @Test
     public void test1() {
         SqlDto sqlDto = new SqlDto();
-        sqlDto.setSqlDbType(1);
         sqlDto.setStatement("select * from sys_dict_data");
         sqlDto.setOpenTrans(0);
         sqlDto.setSqlMaxRow(1000);

@@ -76,8 +76,6 @@ public class DataServiceApiConfigServiceImpl extends BaseServiceImpl<DataService
                 .like(StrUtil.isNotBlank(query.getPath()), DataServiceApiConfigEntity::getPath, query.getPath())
                 .eq(StrUtil.isNotBlank(query.getContentType()), DataServiceApiConfigEntity::getContentType, query.getContentType())
                 .eq(query.getStatus() != null, DataServiceApiConfigEntity::getStatus, query.getStatus())
-                .eq(query.getSqlDbType() != null, DataServiceApiConfigEntity::getSqlDbType, query.getSqlDbType())
-                .eq(query.getDatabaseId() != null, DataServiceApiConfigEntity::getDatabaseId, query.getDatabaseId())
                 .eq(query.getPrevilege() != null, DataServiceApiConfigEntity::getPrevilege, query.getPrevilege())
                 .eq(query.getOpenTrans() != null, DataServiceApiConfigEntity::getOpenTrans, query.getOpenTrans())
                 .orderByDesc(DataServiceApiConfigEntity::getCreateTime).orderByDesc(DataServiceApiConfigEntity::getId);

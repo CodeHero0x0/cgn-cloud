@@ -37,11 +37,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SqlDto {
-	private Integer sqlDbType;
 	private Long projectId;
 	private String statement;
 	private String sqlSeparator;
-	private Long databaseId;
 	private Integer openTrans;
 	private String jsonParams;
 	private Integer sqlMaxRow;
