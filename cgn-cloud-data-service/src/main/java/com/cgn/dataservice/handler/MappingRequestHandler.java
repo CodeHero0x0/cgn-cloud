@@ -2,7 +2,6 @@ package com.cgn.dataservice.handler;
 
 import com.cgn.dataservice.dao.DataServiceApiConfigDao;
 import com.cgn.dataservice.dto.SqlDto;
-import com.cgn.dataservice.entity.DataServiceApiAuthEntity;
 import com.cgn.dataservice.entity.DataServiceApiConfigEntity;
 import com.cgn.dataservice.entity.DataServiceApiLogEntity;
 import com.cgn.dataservice.service.DataServiceApiExecuteService;
@@ -125,11 +124,6 @@ public class MappingRequestHandler {
             apiLogEntity.setProjectId(1000L);
             //添加日志
             apiLogService.save(apiLogEntity);
-            if (apiConfigEntity != null) {
-                //api调用次数++
-                apiConfigDao.increaseRequestedTimes(apiConfigEntity.getId());
-
-            }
         }
     }
 
