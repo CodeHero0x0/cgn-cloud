@@ -11,6 +11,17 @@ services:
     networks:
       - cgn-net
 
+  # 大屏
+  cgn-screen:
+    image: cgn-screen:latest
+    restart: always
+    environment:
+      - TZ=Asia/Shanghai
+    container_name: cgn-screen
+    ports:
+      - "1081:1081"
+    networks:
+      - cgn-net
 
   # 网关服务
   cgn-cloud-gateway:
@@ -42,7 +53,8 @@ services:
     networks:
       - cgn-net
 
-  # 系统服务
+
+  # 数据服务
   cgn-cloud-data-service:
     image: cgn-cloud-data-service:latest
     restart: always
