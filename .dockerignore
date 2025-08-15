@@ -1,0 +1,30 @@
+# 忽略所有模块的 Maven 构建输出目录
+**/target/
+
+# 忽略 Git 相关文件
+.git
+.gitignore
+
+# 忽略 IDE 配置文件
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# 忽略 Maven Wrapper (因为我们的构建镜像自带了Maven)
+.mvn/
+mvnw
+mvnw.cmd
+
+# 忽略操作系统生成的文件
+.DS_Store
+Thumbs.db
+
+# 忽略日志文件和目录
+*.log
+logs/
+
+# 忽略其他构建工具或本地配置文件
+node_modules/
+npm-debug.log
+README.md
