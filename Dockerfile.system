@@ -1,0 +1,47 @@
+# /docker/Dockerfile.gateway
+# 尽管此文件在 /docker 目录下，但它的 COPY 指令是相对于项目根目录的
+
+# =================================================================
+# STAGE 1: Build
+# =================================================================
+FROM maven:3.8-eclipse-temurin-17 AS builder
+
+WORKDIR /app
+
+# --- Step 1: Cache Dependencies ---
+# 源路径是相对于“构建上下文”（即项目根目录）的
+COPY pom.xml ./pom.xml
+COPY cgn-cloud-api/pom.xml ./cgn-cloud-api/pom.xml
+COPY cgn-cloud-data-service/pom.xml ./cgn-cloud-data-service/pom.xml
+COPY cgn-cloud-framework/pom.xml ./cgn-cloud-framework/pom.xml
+COPY cgn-cloud-gateway/pom.xml ./cgn-cloud-gateway/pom.xml
+COPY cgn-cloud-system/pom.xml ./cgn-cloud-system/pom.xml
+COPY cgn-cloud-module/pom.xml ./cgn-cloud-module/pom.xml
+COPY cgn-cloud-module/cgn-module-iot/pom.xml ./cgn-cloud-module/cgn-module-iot/pom.xml
+COPY cgn-cloud-module/cgn-module-monitor/pom.xml ./cgn-cloud-module/cgn-module-monitor/pom.xml
+COPY cgn-cloud-module/cgn-module-quartz/pom.xml ./cgn-cloud-module/cgn-module-quartz/pom.xml
+
+RUN mvn dependency:go-offline
+
+# --- Step 2: Copy Source Code ---
+# 源路径 '.' 代表“构建上下文”的根目录，也就是我们的项目根目录
+COPY . .
+
+# --- Step 3: Build only the target module and its dependencies ---
+RUN mvn clean install -pl cgn-cloud-system -am -DskipTests=true
+
+# =================================================================
+# STAGE 2: Runtime
+# =================================================================
+FROM eclipse-temurin:17-jre
+LABEL maintainer="zyan888@88.com"
+WORKDIR /app
+
+# --- Step 4: Copy the final JAR from the builder stage ---
+COPY --from=builder /app/cgn-cloud-system/target/cgn-cloud-system.jar app.jar
+
+ENV TZ=Asia/Shanghai
+EXPOSE 18081
+
+# --- Step 5: Run the application ---
+ENTRYPOINT ["java", "-server", "-Xms512M", "-Xmx512M", "-Djava.security.egd=file:/dev/./urandom", "-Dfile.encoding=UTF-8", "-XX:+HeapDumpOnOutOfMemoryError", "-jar", "app.jar" ]
